@@ -171,7 +171,7 @@ module Fluent::Plugin
 
       Aws.use_bundled_cert! if @use_bundled_cert
 
-      if @s3_endpoint && @s3_endpoint.end_with?('amazonaws.com')
+      if @s3_endpoint && @s3_endpoint.end_with?('amazonaws.com') && !@s3_endpoint.start_with?('s3-fips')
         raise Fluent::ConfigError, "s3_endpoint parameter is not supported for S3, use s3_region instead. This parameter is for S3 compatible services"
       end
 
